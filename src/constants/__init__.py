@@ -4,6 +4,16 @@ import numpy as np
 
 # Common Constant variables for pipeline
 TARGET_COLUMN: str = "Churn"
+
+# Feature columns for transformation (used if not inferred from dtypes)
+CATEGORICAL_FEATURES: list = [
+    "Partner", "Dependents", "PhoneService", "MultipleLines", "InternetService",
+    "OnlineSecurity", "OnlineBackup", "DeviceProtection", "TechSupport",
+    "StreamingTV", "StreamingMovies", "Contract", "PaperlessBilling", "PaymentMethod",
+]
+NUMERICAL_FEATURES: list = [
+    "Gender", "SeniorCitizen", "tenure", "MonthlyCharges", "TotalCharges",
+]
 PIPELINE_NAME: str = "CustomerChurnPrediction"
 ARTIFACTS_DIR: str = "Artifacts"
 DATA_SET_FILE: str = "telco_customers.csv"
