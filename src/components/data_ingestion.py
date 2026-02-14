@@ -1,3 +1,5 @@
+"""Data Ingestion form MongoDB and splitting data into train & test then export them to the Artifacts as csv"""
+
 import pymongo
 import pandas as pd
 import sys
@@ -7,7 +9,6 @@ from src.config.artifacts_entity import DataIngestionArtifact
 from utils.exceptions.exceptions import NetworkSecurityException
 from utils.logging.logger import logging
 from sklearn.model_selection import train_test_split
-
 
 MONGO_DB_URL = os.getenv('MONGO_DB_URL')
 
@@ -32,6 +33,7 @@ class DataIngestion:
                 df = df.drop('customerID', axis=1)
             df['Gender'] = df['Gender'].replace({'Male': 1, "Female": 0})
             df['Churn'] = df['Churn'].replace({'Yes': 1, "No": 0})
+
             return df
         except Exception as e:
             raise NetworkSecurityException(e, sys)
@@ -76,5 +78,6 @@ class DataIngestion:
             self.split_data_to_train_test(df)
 
             return DataIngestionArtifact(self.data_ingestion_config.training_file_path, self.data_ingestion_config.testing_file_path)
+
         except Exception as e:
             raise NetworkSecurityException(e, sys)

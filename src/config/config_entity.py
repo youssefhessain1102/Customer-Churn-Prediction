@@ -1,7 +1,7 @@
+"""The config entity of the entire Pipeline"""
 import os
 from src import constants as training_pipeline
 from datetime import datetime
-
 
 class TrainingPipelineConfig:
 
