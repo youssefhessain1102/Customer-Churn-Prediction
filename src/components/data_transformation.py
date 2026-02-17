@@ -127,9 +127,7 @@ class DataTransformation:
 
             target = training_pipeline.TARGET_COLUMN
             X_train = train_df.drop(columns=[target])
-            y_train = train_df[target]
             X_test = test_df.drop(columns=[target])
-            y_test = test_df[target]
 
             cat_cols, num_cols = self._get_feature_columns(X_train)
             preprocessor = self._build_preprocessor(cat_cols, num_cols)

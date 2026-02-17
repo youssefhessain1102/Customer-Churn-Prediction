@@ -1,0 +1,9 @@
+[ 2026-02-14 12:53:32,974 ] 17 root - INFO - Initiate Data ingestion
+[ 2026-02-14 12:53:32,977 ] 35 root - WARNING - MONGO_DB_URL not set; skipping MongoDB.
+[ 2026-02-14 12:53:32,978 ] 64 root - INFO - Loading data from CSV fallback: data\raw\telco_customers.csv
+[ 2026-02-14 12:53:33,442 ] 90 root - INFO - Imported dataframe: 7043 rows, 20 columns
+[ 2026-02-14 12:53:33,676 ] 109 root - INFO - Performed train test split on the dataframe
+[ 2026-02-14 12:53:33,677 ] 110 root - INFO - Exited split_data_as_train_test method of Data_Ingestion class
+[ 2026-02-14 12:53:33,677 ] 118 root - INFO - Exporting train and test file path.
+[ 2026-02-14 12:53:33,749 ] 127 root - INFO - Exported train and test file path.
+[ 2026-02-14 12:53:33,751 ] 20 root - INFO - Ingestion Initiation completed

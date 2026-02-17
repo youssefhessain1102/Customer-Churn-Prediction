@@ -1,17 +1,11 @@
 from typing import Any, Dict, Tuple, Optional
-
 import numpy as np
 from sklearn.base import BaseEstimator
 from sklearn.model_selection import GridSearchCV
+from utils.exceptions.exceptions import CustomerChurnPrediction
+from utils.logging.logger import logging
+import sys
 
-from utils.logging.logger import get_logger
-from utils.exceptions.exceptions import ConfigError, ModelError, ml_step
-
-
-logger = get_logger("model_selection")
-
-
-@ml_step(logger)
 def tune_classifier(
     estimator: BaseEstimator,
     param_grid: Dict[str, list],
@@ -47,7 +41,7 @@ def tune_classifier(
         Best estimator and a dictionary with tuning details.
     """
     if not param_grid:
-        raise ConfigError("param_grid must not be empty for hyperparameter tuning.")
+        raise CustomerChurnPrediction("Can't fine-tune without the param_grif")
 
     try:
         search = GridSearchCV(
@@ -60,9 +54,9 @@ def tune_classifier(
         )
         search.fit(x_train, y_train)
     except Exception as exc:  # noqa: BLE001
-        raise ModelError(f"Hyperparameter tuning failed: {exc}") from exc
+        raise CustomerChurnPrediction(exc, sys)
 
-    logger.info(
+    logging.info(
         "Best params: %s | Best %s: %.4f",
         search.best_params_,
         scoring,
